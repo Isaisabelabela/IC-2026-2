@@ -1,0 +1,134 @@
+DATASET — CROP RECOMMENDATION DATASET
+
+Tema:
+Classificação de Culturas Agrícolas a partir de Características do Solo e Condições Climáticas
+
+Objetivo do trabalho:
+Desenvolver uma Inteligência Artificial capaz de classificar culturas agrícolas a partir de características do solo e de condições climáticas presentes nos dados.
+
+Sobre o dataset:
+O Crop Recommendation Dataset é uma base de dados voltada à classificação de culturas agrícolas. A base reúne informações relacionadas às condições do solo e do ambiente e associa essas características a uma cultura agrícola.
+
+A base possui 2.200 registros e 8 colunas:
+- 7 variáveis de entrada;
+- 1 variável-alvo (label).
+
+VARIÁVEIS DE ENTRADA:
+
+N:
+Representa o nitrogênio presente no solo.
+
+P:
+Representa o fósforo presente no solo.
+
+K:
+Representa o potássio presente no solo.
+
+temperature:
+Representa a temperatura do ambiente, em °C.
+
+humidity:
+Representa a umidade relativa, em %.
+
+ph:
+Representa o pH do solo, indicando seu nível de acidez ou alcalinidade.
+
+rainfall:
+Representa a quantidade de chuva/precipitação, em mm.
+
+VARIÁVEL-ALVO:
+
+label:
+Representa a cultura agrícola associada às características apresentadas no registro.
+
+A variável label possui 22 classes:
+- rice (arroz)
+- maize (milho)
+- chickpea (grão-de-bico)
+- kidneybeans
+- pigeonpeas
+- mothbeans
+- mungbean
+- blackgram
+- lentil (lentilha)
+- pomegranate (romã)
+- banana
+- mango (manga)
+- grapes (uva)
+- watermelon (melancia)
+- muskmelon (melão)
+- apple (maçã)
+- orange (laranja)
+- papaya (mamão)
+- coconut (coco)
+- cotton (algodão)
+- jute (juta)
+- coffee (café)
+
+Cada cultura possui 100 registros, totalizando 2.200 registros. Dessa forma, a base apresenta uma distribuição equilibrada entre as classes.
+
+TIPO DE PROBLEMA:
+
+Classificação multiclasse.
+
+A IA receberá 7 características como entrada e deverá produzir uma classificação entre 22 possíveis culturas.
+
+Representação simplificada:
+
+N + P + K + temperatura + umidade + pH + chuva
+                        ↓
+                       IA
+                        ↓
+               uma das 22 culturas
+
+POSSIBILIDADES DE EXPERIMENTAÇÃO:
+
+A base permite realizar diferentes experimentos de Inteligência Computacional, como:
+
+- Alteração da arquitetura da rede neural;
+- Alteração do número de camadas;
+- Alteração do número de neurônios;
+- Comparação entre funções de ativação;
+- Comparação entre métodos de inicialização dos pesos;
+- Alteração dos hiperparâmetros de treinamento;
+- Diferentes formas de normalização/padronização dos dados;
+- Remoção ou seleção de características;
+- Diferentes divisões entre treinamento, validação e teste;
+- Inclusão de ruído para avaliar a robustez da IA;
+- Comparação do desempenho entre diferentes configurações.
+
+AVALIAÇÃO:
+
+O desempenho da IA pode ser analisado utilizando métricas como:
+
+- Acurácia;
+- Precisão (Precision);
+- Revocação (Recall);
+- F1-score;
+- Matriz de confusão.
+
+Além do desempenho geral, a matriz de confusão permite analisar quais culturas são mais facilmente confundidas pela IA.
+
+VANTAGENS DA BASE PARA O TRABALHO:
+
+- Problema de classificação bem definido;
+- Dados predominantemente numéricos;
+- Apenas 7 características de entrada;
+- 22 classes diferentes;
+- Classes balanceadas;
+- Dataset de tamanho adequado para experimentação;
+- Fácil manipulação e pré-processamento;
+- Permite testar diferentes arquiteturas e configurações de redes neurais;
+- Permite observar como alterações na IA afetam seu desempenho;
+- Possibilita a evolução do projeto ao longo dos desafios da disciplina.
+
+LIMITAÇÃO IMPORTANTE:
+
+O dataset representa padrões presentes nos dados utilizados para sua construção e está relacionado a condições agrícolas da Índia. Portanto, os resultados da IA não devem ser interpretados como uma recomendação agrícola universal ou diretamente aplicável a qualquer região.
+
+FONTE:
+
+Crop Recommendation Dataset — Kaggle.
+
+Artigo relacionado:
+“Machine learning based recommendation of agricultural and horticultural crop farming in India under the regime of NPK, soil pH and three climatic variables” — Heliyon, 2024.
