@@ -1,134 +1,243 @@
-DATASET — CROP RECOMMENDATION DATASET
+HAR70+ — HUMAN ACTIVITY RECOGNITION 70+
 
-Tema:
-Classificação de Culturas Agrícolas a partir de Características do Solo e Condições Climáticas
+1. TEMA DO PROJETO
 
-Objetivo do trabalho:
-Desenvolver uma Inteligência Artificial capaz de classificar culturas agrícolas a partir de características do solo e de condições climáticas presentes nos dados.
+Reconhecimento de Atividades Humanas utilizando Inteligência Computacional.
 
-Sobre o dataset:
-O Crop Recommendation Dataset é uma base de dados voltada à classificação de culturas agrícolas. A base reúne informações relacionadas às condições do solo e do ambiente e associa essas características a uma cultura agrícola.
+O objetivo do projeto é desenvolver um modelo de Inteligência Computacional capaz de reconhecer diferentes atividades humanas a partir de sinais obtidos por acelerômetros.
 
-A base possui 2.200 registros e 8 colunas:
-- 7 variáveis de entrada;
-- 1 variável-alvo (label).
+A ideia é que a IA receba dados de movimento capturados pelos sensores e aprenda a associar os padrões desses sinais às atividades realizadas pelos participantes.
 
-VARIÁVEIS DE ENTRADA:
 
-N:
-Representa o nitrogênio presente no solo.
+2. SOBRE A BASE DE DADOS
 
-P:
-Representa o fósforo presente no solo.
+A base utilizada será a HAR70+ (Human Activity Recognition 70+), disponibilizada pelo UCI Machine Learning Repository.
 
-K:
-Representa o potássio presente no solo.
+A base contém dados de 18 participantes com idade entre 70 e 95 anos. Os participantes utilizaram dois acelerômetros triaxiais durante aproximadamente 40 minutos em um protocolo semiestruturado realizado em condições próximas às atividades do cotidiano.
 
-temperature:
-Representa a temperatura do ambiente, em °C.
+Os sensores foram posicionados:
 
-humidity:
-Representa a umidade relativa, em %.
+- na região lombar;
+- na coxa direita.
 
-ph:
-Representa o pH do solo, indicando seu nível de acidez ou alcalinidade.
+A base possui:
 
-rainfall:
-Representa a quantidade de chuva/precipitação, em mm.
+- 2.259.597 registros;
+- 6 características de entrada;
+- 18 participantes;
+- dados multivariados e temporais;
+- nenhuma informação faltante segundo o UCI;
+- problema de classificação.
 
-VARIÁVEL-ALVO:
 
-label:
-Representa a cultura agrícola associada às características apresentadas no registro.
+3. O QUE É UM ACELERÔMETRO?
 
-A variável label possui 22 classes:
-- rice (arroz)
-- maize (milho)
-- chickpea (grão-de-bico)
-- kidneybeans
-- pigeonpeas
-- mothbeans
-- mungbean
-- blackgram
-- lentil (lentilha)
-- pomegranate (romã)
-- banana
-- mango (manga)
-- grapes (uva)
-- watermelon (melancia)
-- muskmelon (melão)
-- apple (maçã)
-- orange (laranja)
-- papaya (mamão)
-- coconut (coco)
-- cotton (algodão)
-- jute (juta)
-- coffee (café)
+Um acelerômetro é um sensor capaz de medir aceleração em diferentes direções.
 
-Cada cultura possui 100 registros, totalizando 2.200 registros. Dessa forma, a base apresenta uma distribuição equilibrada entre as classes.
+Os acelerômetros utilizados possuem três eixos:
 
-TIPO DE PROBLEMA:
+- X
+- Y
+- Z
 
-Classificação multiclasse.
+Por isso, cada sensor gera três sinais.
 
-A IA receberá 7 características como entrada e deverá produzir uma classificação entre 22 possíveis culturas.
+Como são utilizados dois sensores, temos seis sinais:
 
-Representação simplificada:
+Sensor da região lombar:
+- back_x
+- back_y
+- back_z
 
-N + P + K + temperatura + umidade + pH + chuva
-                        ↓
-                       IA
-                        ↓
-               uma das 22 culturas
+Sensor da coxa:
+- thigh_x
+- thigh_y
+- thigh_z
 
-POSSIBILIDADES DE EXPERIMENTAÇÃO:
 
-A base permite realizar diferentes experimentos de Inteligência Computacional, como:
+4. O QUE AS VARIÁVEIS REPRESENTAM?
 
-- Alteração da arquitetura da rede neural;
-- Alteração do número de camadas;
-- Alteração do número de neurônios;
-- Comparação entre funções de ativação;
-- Comparação entre métodos de inicialização dos pesos;
-- Alteração dos hiperparâmetros de treinamento;
-- Diferentes formas de normalização/padronização dos dados;
-- Remoção ou seleção de características;
-- Diferentes divisões entre treinamento, validação e teste;
-- Inclusão de ruído para avaliar a robustez da IA;
-- Comparação do desempenho entre diferentes configurações.
+As variáveis não representam diretamente a posição da pessoa.
 
-AVALIAÇÃO:
+Elas representam a aceleração medida pelo sensor em cada um dos três eixos.
 
-O desempenho da IA pode ser analisado utilizando métricas como:
+Por exemplo:
 
-- Acurácia;
-- Precisão (Precision);
-- Revocação (Recall);
+back_x = aceleração medida no eixo X pelo sensor localizado nas costas.
+
+thigh_z = aceleração medida no eixo Z pelo sensor localizado na coxa.
+
+Esses valores são registrados continuamente ao longo do tempo.
+
+Assim, podemos observar como a aceleração varia durante uma determinada atividade.
+
+
+5. POR QUE OS DADOS PERMITEM IDENTIFICAR A ATIVIDADE?
+
+Cada atividade produz diferentes padrões de movimento.
+
+Por exemplo, durante uma caminhada, a aceleração da coxa e das costas tende a apresentar variações repetitivas.
+
+Durante uma atividade sedentária, como ficar sentado, os sinais tendem a apresentar um comportamento diferente.
+
+Durante o uso de escadas, os padrões de aceleração também se modificam.
+
+A IA não recebe uma informação dizendo "a pessoa está caminhando".
+
+Ela recebe os valores dos sensores e precisa aprender os padrões associados a cada atividade.
+
+
+6. VARIÁVEL-ALVO
+
+A variável que queremos prever é o label da atividade.
+
+A base contém as seguintes categorias de atividade:
+
+1 - walking
+3 - shuffling
+4 - stairs ascending
+5 - stairs descending
+6 - standing
+7 - sitting
+8 - lying
+
+Portanto, o problema é de classificação multiclasse.
+
+
+7. FORMATO SIMPLIFICADO DO PROBLEMA
+
+ENTRADAS:
+
+back_x
+back_y
+back_z
+thigh_x
+thigh_y
+thigh_z
+
+↓
+
+INTELIGÊNCIA COMPUTACIONAL
+
+↓
+
+SAÍDA:
+
+label da atividade
+
+
+8. EXEMPLO CONCEITUAL
+
+Uma sequência de sinais pode apresentar um padrão semelhante ao observado durante uma caminhada.
+
+A IA recebe os valores dos sensores e, depois de ser treinada com exemplos, pode produzir:
+
+Entrada:
+dados dos acelerômetros
+
+Saída prevista:
+walking
+
+
+9. CARACTERÍSTICA TEMPORAL
+
+A HAR70+ é uma base de séries temporais.
+
+Isso significa que a ordem dos registros importa.
+
+Os sensores registram os movimentos ao longo do tempo, e não apenas valores independentes.
+
+Por isso, uma atividade é melhor entendida observando uma sequência de medições.
+
+No estudo original, os sinais foram segmentados em janelas de cinco segundos, contendo 250 amostras a 50 Hz, e características foram extraídas dessas janelas para o treinamento dos modelos.
+
+Essa característica será importante para definir como os dados serão utilizados no projeto.
+
+
+10. POR QUE ESSA BASE É INTERESSANTE PARA A DISCIPLINA?
+
+A base permite realizar diversos experimentos de Inteligência Computacional.
+
+Podemos testar:
+
+- diferentes arquiteturas de redes neurais;
+- diferentes números de camadas;
+- diferentes números de neurônios;
+- funções de ativação, como ReLU, Tanh e Sigmoid;
+- diferentes métodos de inicialização;
+- diferentes características de entrada;
+- uso dos dados da coxa, das costas ou dos dois sensores;
+- diferentes estratégias de pré-processamento;
+- diferentes métodos de avaliação.
+
+Dessa forma, o projeto pode evoluir ao longo dos desafios da disciplina.
+
+
+11. POSSÍVEL ESTRUTURA DO PROJETO
+
+Base HAR70+
+↓
+Análise dos dados
+↓
+Pré-processamento
+↓
+Definição das janelas temporais
+↓
+Treinamento da rede neural
+↓
+Classificação das atividades
+↓
+Avaliação
+↓
+Comparação entre diferentes configurações
+
+
+12. AVALIAÇÃO
+
+O desempenho do modelo poderá ser analisado utilizando métricas como:
+
+- Accuracy;
+- Precision;
+- Recall;
 - F1-score;
 - Matriz de confusão.
 
-Além do desempenho geral, a matriz de confusão permite analisar quais culturas são mais facilmente confundidas pela IA.
+A matriz de confusão será especialmente útil para verificar quais atividades são mais confundidas pelo modelo.
 
-VANTAGENS DA BASE PARA O TRABALHO:
 
-- Problema de classificação bem definido;
-- Dados predominantemente numéricos;
-- Apenas 7 características de entrada;
-- 22 classes diferentes;
-- Classes balanceadas;
-- Dataset de tamanho adequado para experimentação;
-- Fácil manipulação e pré-processamento;
-- Permite testar diferentes arquiteturas e configurações de redes neurais;
-- Permite observar como alterações na IA afetam seu desempenho;
-- Possibilita a evolução do projeto ao longo dos desafios da disciplina.
+13. ESTUDO ANTERIOR
 
-LIMITAÇÃO IMPORTANTE:
+A HAR70+ foi apresentada e utilizada em um estudo publicado em 2023:
 
-O dataset representa padrões presentes nos dados utilizados para sua construção e está relacionado a condições agrícolas da Índia. Portanto, os resultados da IA não devem ser interpretados como uma recomendação agrícola universal ou diretamente aplicável a qualquer região.
+"Validation of an Activity Type Recognition Model Classifying Daily Physical Behavior in Older Adults: The HAR70+ Model"
 
-FONTE:
+Autores:
+Astrid Ustad et al.
 
-Crop Recommendation Dataset — Kaggle.
+O estudo desenvolveu e validou um modelo de reconhecimento de atividades utilizando os dados de adultos mais velhos.
 
-Artigo relacionado:
-“Machine learning based recommendation of agricultural and horticultural crop farming in India under the regime of NPK, soil pH and three climatic variables” — Heliyon, 2024.
+No estudo, foram utilizados acelerômetros e aprendizado de máquina para classificar comportamentos físicos.
+
+Isso não impede a utilização da base no projeto da disciplina, pois a proposta do projeto será estudar diferentes configurações de Inteligência Computacional e analisar seu comportamento sobre a base.
+
+
+14. FONTES
+
+UCI MACHINE LEARNING REPOSITORY.
+
+HAR70+ — Human Activity Recognition 70+.
+Dataset ID: 780.
+DOI: 10.24432/C5CW3D.
+
+https://archive.ics.uci.edu/dataset/780/har70
+
+
+USTAD, Astrid et al.
+
+Validation of an Activity Type Recognition Model Classifying Daily Physical Behavior in Older Adults: The HAR70+ Model.
+
+Sensors, 2023, 23(5), 2368.
+
+DOI: 10.3390/s23052368
+
+https://www.mdpi.com/1424-8220/23/5/2368
